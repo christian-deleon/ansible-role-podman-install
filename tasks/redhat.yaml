@@ -1,3 +1,0 @@
----
-- name: Include OS Major Version specific tasks
-  include_tasks: "redhat-{{ ansible_distribution_major_version }}.yaml"

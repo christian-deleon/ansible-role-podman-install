@@ -1,5 +1,0 @@
----
-- name: Install Podman
-  ansible.builtin.shell: |
-    apt-get update
-    apt-get -y install podman

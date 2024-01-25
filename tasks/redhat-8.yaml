@@ -1,7 +1,0 @@
----
-- name: Enable container-tools module
-  yum:
-    name: container-tools
-    state: present
-    enablerepo: rhel-8-for-x86_64-baseos-rpms
-    disable_gpg_check: true
