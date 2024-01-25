@@ -10,6 +10,7 @@
       name: podman
       state: present
       enablerepo: rhel-7-server-extras-rpms
+    become: true
 
   when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '7'
 
@@ -19,6 +20,7 @@
         name: container-tools
         state: present
         enablerepo: rhel-8-for-x86_64-baseos-rpms
+      become: true
   
   when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '8'
 
@@ -27,6 +29,7 @@
     ansible.builtin.yum:
       name: podman
       state: present
+    become: true
 
   when: ansible_distribution in ['AlmaLinux', 'CentOS']
 
@@ -35,5 +38,6 @@
     ansible.builtin.apt:
       name: podman
       state: present
+    become: true
 
   when: ansible_os_family == 'Debian'
