@@ -4,40 +4,32 @@
     gather_subset:
       - min
 
-- block:
-  - name: Install podman
-    ansible.builtin.yum:
-      name: podman
-      state: present
-      enablerepo: rhel-7-server-extras-rpms
-    become: true
-
+- name: Install podman for RHEL 7
+  ansible.builtin.yum:
+    name: podman
+    state: present
+    enablerepo: rhel-7-server-extras-rpms
+  become: true
   when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '7'
 
-- block:
-    - name: Enable container-tools module
-      ansible.builtin.yum:
-        name: container-tools
-        state: present
-        enablerepo: rhel-8-for-x86_64-baseos-rpms
-      become: true
-  
+- name: Enable container-tools module for RHEL 8
+  ansible.builtin.yum:
+    name: container-tools
+    state: present
+    enablerepo: rhel-8-for-x86_64-baseos-rpms
+  become: true
   when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '8'
 
-- block:
-  - name: Install Podman
-    ansible.builtin.yum:
-      name: podman
-      state: present
-    become: true
-
+- name: Install Podman for AlmaLinux/CentOS
+  ansible.builtin.yum:
+    name: podman
+    state: present
+  become: true
   when: ansible_distribution in ['AlmaLinux', 'CentOS']
 
-- block:
-  - name: Install Podman
-    ansible.builtin.apt:
-      name: podman
-      state: present
-    become: true
-
+- name: Install Podman for Debian
+  ansible.builtin.apt:
+    name: podman
+    state: present
+  become: true
   when: ansible_os_family == 'Debian'
